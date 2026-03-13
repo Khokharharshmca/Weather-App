@@ -1,0 +1,71 @@
+body {
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  color: white;
+  background-image: url(hg.jpg);
+  background-size: cover;
+  font-weight: 900;
+  
+}
+
+.container {
+  background: rgba(126,185,180,0);
+  padding: 20px 30px;
+  border-radius: 12px;
+  text-align: center;
+  width: 700px;
+  height: 500px;
+  box-shadow: 0 10px 25px ;
+   animation: 4s myanimation ease;
+   animation-delay: 0;
+}
+
+   
+   
+
+@keyframes myanimation{
+    from{
+        transform: scale(0);
+        opacity: 0px;
+    }
+    to{
+        transform: scale(1);
+        opacity: 1.9px;
+    }
+}
+input {
+  width: 40%;
+  height: 20px;
+  padding: 10px;
+  border-radius: 50px 50px 50px 50px;
+  border: none;
+  margin-bottom: 10px;
+  font-weight: 900;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 50px 50px 50px 50px;
+  background: rgb(24, 170, 170);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+
+button:hover {
+  background: #e68900;
+}
+
+#weatherResult {
+  margin-top: 15px;
+  font-size: 18px;
+}

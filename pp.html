@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Weather App</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #74ebd5, #9face6);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  z-index: -1;
+
+}
+
+.weather-container {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  width: 400px;
+  border: 1;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background: #4a6cf7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #3b5bdb;
+}
+
+.weather-result {
+  margin-top: 15px;
+  font-size: 16px;
+}
+
+  </style>
+</head>
+<body>
+    <!-- <img src="cloud.jpg" alt="" srcset=""> -->
+
+  <div class="weather-container">
+    <h1> Weather App</h1>
+
+    <input type="text" id="locationInput" placeholder="Enter city name">
+    <button onclick="getWeather()">Get Weather</button>
+
+    <div id="weatherResult" class="weather-result"></div>
+  </div>
+
+  <script>
+    function getWeather() {
+  const location = document.getElementById("locationInput").value;
+  const resultDiv = document.getElementById("weatherResult");
+
+  if (location === "") {
+    resultDiv.innerHTML = "❌ Please enter a location";
+    return;
+  }
+
+  const apiKey = "0ea1115f176e440aa5760830260902";
+  const apiUrl = "http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}&aqi=yes";
+
+  fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) {
+        resultDiv.innerHTML = "❌ Location not found";
+      } else {
+        resultDiv.innerHTML = `
+          <h3>${data.location.name}, ${data.location.country}</h3>
+          <p>🌡 Temperature: ${data.current.temp_c} °C</p>
+          <p>☁ Condition: ${data.current.condition.text}</p>
+        `;
+      }
+    })
+    .catch(error => {
+      resultDiv.innerHTML = "⚠ Something went wrong";
+      console.error(error);
+    });
+}
+
+  </script>
+</body>
+</html>

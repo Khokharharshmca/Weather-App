@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Weather App</title>
+  <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+  
+
+<div class="container">
+  <h1>🌍 𝕎𝔼𝔸𝕋ℍ𝔼ℝ ℂℍ𝔼ℂ𝕂𝔼ℝ</h1>
+  <input type="text" id="cityInput" placeholder="Enter city name">
+  
+  <button onclick="getWeather()">Check Weather</button>
+
+
+  <div id="weatherResult"></div>
+</div>
+
+<script>
+async function getWeather() {
+  let city = document.getElementById("cityInput").value;
+
+  if (city === "") {
+    alert("Please enter a city name");
+    return;
+  }
+
+  let apiKey = "449d4f032de349f68fb62034260902";
+  let url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&aqi=yes`;
+
+  try {
+    let response = await fetch(url);
+    let data = await response.json();
+
+    let temp = data.current.temp_c;
+    let condition = data.current.condition.text;
+
+    document.getElementById("weatherResult").innerHTML = `
+      📍 City: ${data.location.name}<br>
+      🌡 Temperature Today: <b>${temp}°C</b><br>
+      🌤 Condition: ${condition}
+    `;
+  } 
+  catch (error) {
+    document.getElementById("weatherResult").innerHTML = "❌ City not found!";
+  }
+}
+</script>
+
+</body>
+</html>

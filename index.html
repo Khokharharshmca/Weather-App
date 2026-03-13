@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main">
+        <div class="min1">
+            <input type="text" placeholder="Enter City Name">
+            
+            <div class="min2">
+                <button><img src="mm.jpg"></button>
+            </div>
+        </div>
+        <img src="fdm.jpeg" class="img1">
+        <h1 class="temp">25°C</h1>
+        <div class="main2">
+        <div class="min3">
+        <img src="wind.jpeg">
+        <h2 class="wind">13km\h</h2>
+        </div>
+        <div class="min4">
+           <img src="humidity.jpeg">
+           <h2 class="humidity">10%</h2>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        const apikey ="0ea1115f176e440aa5760830260902";
+        const apiurl = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}&aqi=yes`;
+
+        async function checkweather(){
+            const response = await fetch(apiurl + `appid=${apikey}`);
+            var data = await response.json();
+        
+        console.log(data);
+        }
+        checkweather();
+    </script>
+</body>
+</html>
